@@ -21,12 +21,12 @@ def menu():
         print("5. RETURN BOOK")
         print("6. EXIT")
         print()
-        
+
 def save_library():
     with open("books.txt", "w") as file:
         for book in library:
             file.write(f"{book},{library[book]}\n")
-       
+
 def func_add():
             print()
             print("-------------------------------")
@@ -40,7 +40,7 @@ def func_add():
                 library[book_name] = "Available"
                 save_library()
                 print("Book has been added to the library succesfuly")
-                        
+
 def func_view():
     print()
     print("-------------------------------")
@@ -51,7 +51,7 @@ def func_view():
         print(f"name : {name}")
         print(f"status : {library[name]}")
         print()
-                        
+
 def func_search():
     print()
     print("-------------------------------")
@@ -68,7 +68,7 @@ def func_search():
     else:
         print()
         print("No such book in the library")
-       
+
 def func_borrow():
     print()
     print("----------------------------")
@@ -88,7 +88,7 @@ def func_borrow():
     else:
         print()
         print("No such book exists in the library")
-        
+
 def func_return():
     print()
     print("----------------------------")
@@ -115,27 +115,31 @@ def func_return():
         else:
             print()
             print("This book can't be returned")
-            
+
 while True:
     menu()
-    choice = int(input("Enter Your Choice : "))
-    if choice == 1:
-        func_add()
-    elif choice == 2:
-        func_view()
-    elif choice == 3:
-        func_search()
-    elif choice == 4:
-        func_borrow()
-    elif choice == 5:
-        func_return()
-    elif choice == 6:
-        print()
-        print("---------------------------------------------------------")
-        print("         THANK YOU FOR USING LIBRARY MANAGEMENT SYSTEM     ")
-        print("---------------------------------------------------------")
-        break
+    try:
+        choice = int(input("Enter your choice : "))
+    except ValueError:
+        print("Enter a Valid Choice")
     else:
-        print()
-        print("Enter a valid choice from above given options")
-        print()
+        if choice == 1:
+            func_add()
+        elif choice == 2:
+            func_view()
+        elif choice == 3:
+            func_search()
+        elif choice == 4:
+            func_borrow()
+        elif choice == 5:
+            func_return()
+        elif choice == 6:
+            print()
+            print("---------------------------------------------------------")
+            print("         THANK YOU FOR USING LIBRARY MANAGEMENT SYSTEM     ")
+            print("---------------------------------------------------------")
+            break
+        else:
+            print()
+            print("Enter a valid choice from above given options")
+            print()

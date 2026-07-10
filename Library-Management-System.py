@@ -1,47 +1,51 @@
+#Welcome to Library Management System
+#Practice Project for Python file handling and error handling 
+# This program uses a file named books.txt to store library records
+# Make sure books.txt exists in the same directory before running the program
 print("-----------------------------------------")
-print("    WELCOME TO LIBRARY MANAGMENT SYSTEM    ")
+print("    WELCOME TO LIBRARY MANAGMENT SYSTEM  ")
 print("-----------------------------------------")
 
-library = {}
-with open("books.txt") as file:
-                    for line in file:
-                        name,status = line.strip().split(",")
-                        library[name.strip()] = status.strip()
+library = {}  #Empty dictionary for accessing data inside books.txt
+with open("books.txt") as file: #converting file into dictionary
+    for line in file:
+        name,status = line.strip().split(",")
+        library[name.strip()] = status.strip()
 
-def menu():
-        print()
-        print("---------------------")
-        print("         MENU        ")
-        print("---------------------")
-        print()
-        print("1. ADD BOOK")
-        print("2. VIEW BOOKS")
-        print("3. SEARCH BOOK")
-        print("4. BORROW BOOK")
-        print("5. RETURN BOOK")
-        print("6. EXIT")
-        print()
+def menu(): #Menu module
+    print()
+    print("---------------------")
+    print("         MENU        ")
+    print("---------------------")
+    print()
+    print("1. ADD BOOK")
+    print("2. VIEW BOOKS")
+    print("3. SEARCH BOOK")
+    print("4. BORROW BOOK")
+    print("5. RETURN BOOK")
+    print("6. EXIT")
+    print()
 
-def save_library():
+def save_library(): #Converting dictionary to file
     with open("books.txt", "w") as file:
         for book in library:
             file.write(f"{book},{library[book]}\n")
 
-def func_add():
-            print()
-            print("-------------------------------")
-            print("       ADD BOOK      ")
-            print("-------------------------------")
-            print()
-            book_name = input("Enter Name of Book to ADD : ")
-            if book_name in library:
-                print("Book already Exists in the Library")
-            else:
-                library[book_name] = "Available"
-                save_library()
-                print("Book has been added to the library succesfuly")
+def func_add(): #Adding new Book module
+    print()
+    print("-------------------------------")
+    print("            ADD BOOK           ")
+    print("-------------------------------")
+    print()
+    book_name = input("Enter Name of Book to ADD : ")
+    if book_name in library:
+        print("Book already Exists in the Library")
+    else:
+        library[book_name] = "Available"
+        save_library()
+        print("Book has been added to the library succesfuly")
 
-def func_view():
+def func_view(): #Veiwing Books module
     print()
     print("-------------------------------")
     print("        VIEW ALL BOOKS         ")
@@ -52,7 +56,7 @@ def func_view():
         print(f"status : {library[name]}")
         print()
 
-def func_search():
+def func_search(): #Searching Books module
     print()
     print("-------------------------------")
     print("          SEARCH BOOK          ")
@@ -69,7 +73,7 @@ def func_search():
         print()
         print("No such book in the library")
 
-def func_borrow():
+def func_borrow(): #Borrowing Book module
     print()
     print("----------------------------")
     print("         BORROW BOOK        ")
@@ -89,7 +93,7 @@ def func_borrow():
         print()
         print("No such book exists in the library")
 
-def func_return():
+def func_return(): #Returning Book Module
     print()
     print("----------------------------")
     print("         RETURN BOOK        ")
@@ -116,11 +120,11 @@ def func_return():
             print()
             print("This book can't be returned")
 
-while True:
+while True: #Feature selection
     menu()
-    try:
+    try: 
         choice = int(input("Enter your choice : "))
-    except ValueError:
+    except ValueError: #Prevents program from crashing due to invalid input of choice
         print("Enter a Valid Choice")
     else:
         if choice == 1:
@@ -133,7 +137,7 @@ while True:
             func_borrow()
         elif choice == 5:
             func_return()
-        elif choice == 6:
+        elif choice == 6: #Exit sequence
             print()
             print("---------------------------------------------------------")
             print("         THANK YOU FOR USING LIBRARY MANAGEMENT SYSTEM     ")
